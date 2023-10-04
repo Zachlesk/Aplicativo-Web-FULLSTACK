@@ -1,11 +1,12 @@
 import db from "../connection/connection.js";
+import { ObjectId } from 'mongodb';
 
 const visitantes = db.collection('visitantes');
 
 export const getVisitantes = async(req,res)=>{
     try {
-       const visitantes = await visitantes.find();
-        res.status(302).send(visitantes) 
+       const visitante = await visitantes.find().toArray();
+        res.status(302).send(visitante) 
     } catch (error) {
         console.error(error)
     }
@@ -13,7 +14,9 @@ export const getVisitantes = async(req,res)=>{
 
 export const getVisitante = async(req, res)=>{
     try {
-        const visitante = await visitantes.findOne({_id: req.params.id})
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const visitante = await visitantes.findOne({_id: objectID})
         res.status(302).send(visitante)
     } catch (error) {
         console.error(error)
@@ -32,7 +35,9 @@ export const postVisitante = async(req, res)=>{
 
 export const deleteVisitante = async(req, res)=>{
     try {
-        const visitante = await visitantes.deleteOne({_id:req.params.id});
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const visitante = await visitantes.deleteOne({_id:objectID});
         res.status(302).send(visitante)
     } catch (error) {
         console.error(error)
@@ -41,8 +46,10 @@ export const deleteVisitante = async(req, res)=>{
 
 export const putVisitante = async(req, res)=> {
     try {
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
         const visitante = await visitantes.findOneAndUpdate(
-            {_id: req.params.id},
+            {_id: objectID},
             req.body,
             { new: true}
         )

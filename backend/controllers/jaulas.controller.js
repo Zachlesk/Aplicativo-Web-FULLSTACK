@@ -1,4 +1,5 @@
-import db from '../connection/connection.js'
+import db from '../connection/connection.js';
+import { ObjectId } from 'mongodb';
 
 const jaulas = db.collection('jaulas');
 
@@ -13,7 +14,9 @@ export const getJaulas = async (req, res)=> {
 
 export const getJaula = async (req, res)=>{
     try {
-        const jaula = await jaulas.findOne({_id: req.params.id}).toArray();
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const jaula = await jaulas.findOne({_id: objectID});
         res.status(302).send(jaula)
     } catch (error) {
         console.error(error)
@@ -33,7 +36,9 @@ export const postJaula = async (req, res)=>{
 
 export const deleteJaula = async (req, res)=>{
     try {
-        const jaula = await jaulas.deleteOne({_id:req.params.id});
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const jaula = await jaulas.deleteOne({_id:objectID});
         res.status(302).send(jaula)
     } catch (error) {
         console.error(error)

@@ -10,9 +10,9 @@ import {
 const router = Router();
 
 router.get('/all', getJaulas);
-router.get('/one', getJaula);
+router.get('/one/:id', getJaula);
 router.post('/add', postJaula);
-router.delete('/delete', deleteJaula);
-router.put('/update', putJaula);
+router.delete('/delete/:id', deleteJaula);
+router.put('/update/:id', putJaula);
 
 export default router;

@@ -10,9 +10,9 @@ import {
 const router = Router();
 
 router.get('/all', getMariposas);
-router.get('/one', getMariposa);
+router.get('/one/:id', getMariposa);
 router.post('/add', postMariposa);
-router.delete('/delete', deleteMariposa);
-router.put('/update', putMariposa);
+router.delete('/delete/:id', deleteMariposa);
+router.put('/update/:id', putMariposa);
 
 export default router;

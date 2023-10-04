@@ -1,4 +1,5 @@
-import db from '../connection/connection.js'
+import db from '../connection/connection.js';
+import { ObjectId } from 'mongodb';
 
 const observaciones = db.collection('observaciones');
 
@@ -13,7 +14,9 @@ export const getObservaciones = async (req, res)=> {
 
 export const getObservacion = async (req, res)=>{
     try {
-        const observacion = await observaciones.findOne({_id: req.params.id}).toArray();
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const observacion = await observaciones.findOne({_id: objectID});
         res.status(302).send(observacion)
     } catch (error) {
         console.error(error)
@@ -33,7 +36,9 @@ export const postObservacion = async (req, res)=>{
 
 export const deleteObservacion = async (req, res)=>{
     try {
-        const observacion = await observaciones.deleteOne({_id:req.params.id});
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const observacion = await observaciones.deleteOne({_id:objectID});
         res.status(302).send(observacion)
     } catch (error) {
         console.error(error)

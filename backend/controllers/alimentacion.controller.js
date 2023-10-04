@@ -1,4 +1,5 @@
-import db from '../connection/connection.js'
+import db from '../connection/connection.js';
+import { ObjectId } from 'mongodb';
 
 const alimentaciones = db.collection('alimentacion');
 
@@ -13,7 +14,9 @@ export const getAlimentaciones = async (req, res)=> {
 
 export const getAlimentacion = async (req, res)=>{
     try {
-        const alimentacion = await alimentaciones.findOne({_id: req.params.id}).toArray();
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const alimentacion = await alimentaciones.findOne({_id: objectID});
         res.status(302).send(alimentacion)
     } catch (error) {
         console.error(error)
@@ -33,7 +36,9 @@ export const postAlimentacion = async (req, res)=>{
 
 export const deleteAlimentacion = async (req, res)=>{
     try {
-        const alimentacion = await alimentaciones.deleteOne({_id:req.params.id});
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const alimentacion = await alimentaciones.deleteOne({_id:objectID});
         res.status(302).send(alimentacion)
     } catch (error) {
         console.error(error)

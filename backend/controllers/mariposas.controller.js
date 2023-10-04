@@ -1,11 +1,12 @@
 import db from '../connection/connection.js'
+import { ObjectId } from 'mongodb';
 
 const mariposas = db.collection('mariposas');
 
 export const getMariposas = async (req, res)=> {
     try {
-        const mariposas = await mariposas.find().toArray();
-        res.status(302).send(mariposas)
+        const mariposa = await mariposas.find().toArray();
+        res.status(302).send(mariposa)
     } catch (error) {
         console.error(error)
     }
@@ -13,7 +14,9 @@ export const getMariposas = async (req, res)=> {
 
 export const getMariposa = async (req, res)=>{
     try {
-        const mariposa = await mariposas.findOne({_id: req.params.id}).toArray();
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const mariposa = await mariposas.findOne({_id: objectID});
         res.status(302).send(mariposa)
     } catch (error) {
         console.error(error)
@@ -33,7 +36,9 @@ export const postMariposa = async (req, res)=>{
 
 export const deleteMariposa = async (req, res)=>{
     try {
-        const mariposa = await mariposas.deleteOne({_id:req.params.id});
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const mariposa = await mariposas.deleteOne({_id: objectID});
         res.status(302).send(mariposa)
     } catch (error) {
         console.error(error)
