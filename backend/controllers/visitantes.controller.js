@@ -25,9 +25,17 @@ export const getVisitante = async(req, res)=>{
 
 export const postVisitante = async(req, res)=>{
     try {
-        const visitante = new visitantes(req.body);
-        const newVisitante = await visitante.save();   
-        res.status(302).send(newVisitante)
+        const { nombre, correo, fecha_visita, edad, ciudad, telefono } = req.body
+        const data = {
+            nombre, 
+            correo, 
+            fecha_visita, 
+            edad, 
+            ciudad, 
+            telefono
+        }
+        const visitante = await visitantes.insertOne(data);
+        res.status(302).send(visitante)
     } catch (error) {
         console.error(error)
     }
@@ -46,12 +54,20 @@ export const deleteVisitante = async(req, res)=>{
 
 export const putVisitante = async(req, res)=> {
     try {
+        const { nombre, correo, fecha_visita, edad, ciudad, telefono } = req.body
+        const data = {
+            nombre, 
+            correo, 
+            fecha_visita, 
+            edad, 
+            ciudad, 
+            telefono
+        }
         const objectIdParams = req.params.id;
         const objectID = new ObjectId(objectIdParams);
-        const visitante = await visitantes.findOneAndUpdate(
+        const visitante = await visitantes.updateOne(
             {_id: objectID},
-            req.body,
-            { new: true}
+            { $set: data}
         )
         res.status(302).send(visitante)
     } catch (error) {

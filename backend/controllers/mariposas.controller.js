@@ -25,9 +25,20 @@ export const getMariposa = async (req, res)=>{
 
 export const postMariposa = async (req, res)=>{
     try {
-        const mariposa = new mariposas(req.body);
-        const newMariposa = await mariposa.send();
-        res.status(302).send(newMariposa)
+        const {nombre_comun, nombre_cientifico, descripcion, habitat, distribucion, jaula, alimentacion } = req.body;
+        const jaulaObjectId = new ObjectId(jaula);
+        const alimentacionObjectId = new ObjectId(alimentacion);
+        const data = {
+            nombre_comun,
+            nombre_cientifico,
+            descripcion,
+            habitat,
+            distribucion,
+            jaula: jaulaObjectId,
+            alimentacion: alimentacionObjectId
+        }
+        const mariposa = await mariposas.insertOne(data);
+        res.status(302).send(mariposa);
     } catch (error) {
         console.error(error)
     }
@@ -47,10 +58,23 @@ export const deleteMariposa = async (req, res)=>{
 
 export const putMariposa = async(req, res)=>{
     try {
-        const mariposa = await mariposas.findOneAndUpdate(
-            {_id:req.params.id},
-            req.body,
-            {new: true}
+        const {nombre_comun, nombre_cientifico, descripcion, habitat, distribucion, jaula, alimentacion } = req.body;
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const jaulaObjectId = new ObjectId(jaula);
+        const alimentacionObjectId = new ObjectId(alimentacion);
+        const data = {
+            nombre_comun,
+            nombre_cientifico,
+            descripcion,
+            habitat,
+            distribucion,
+            jaula: jaulaObjectId,
+            alimentacion: alimentacionObjectId
+        }
+        const mariposa = await mariposas.updateOne(
+            {_id:objectID},
+            { $set: data}
         );
         res.status(302).send(mariposa)
     } catch (error) {

@@ -25,9 +25,15 @@ export const getJaula = async (req, res)=>{
 
 export const postJaula = async (req, res)=>{
     try {
-        const jaula = new jaulas(req.body);
-        const newJaula = await jaula.send();
-        res.status(302).send(newJaula)
+        const { nombre, descripcion, capacidad, temperatura } = req.body
+        const data = {
+            nombre,  
+            descripcion, 
+            capacidad, 
+            temperatura
+        }
+        const jaula = await jaulas.insertOne(data);
+        res.status(302).send(jaula)
     } catch (error) {
         console.error(error)
     }
@@ -47,10 +53,18 @@ export const deleteJaula = async (req, res)=>{
 
 export const putJaula = async(req, res)=>{
     try {
-        const jaula = await jaulas.findOneAndUpdate(
-            {_id:req.params.id},
-            req.body,
-            {new: true}
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const { nombre, descripcion, capacidad, temperatura } = req.body
+        const data = {
+            nombre, 
+            descripcion, 
+            capacidad, 
+            temperatura 
+        }
+        const jaula = await jaulas.updateOne(
+            {_id:objectID},
+            { $set: data}
         );
         res.status(302).send(jaula)
     } catch (error) {

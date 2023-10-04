@@ -25,9 +25,16 @@ export const getAlimentacion = async (req, res)=>{
 
 export const postAlimentacion = async (req, res)=>{
     try {
-        const alimentacion = new alimentaciones(req.body);
-        const newAlimentacion = await alimentacion.send();
-        res.status(302).send(newAlimentacion)
+        const { nombre, tipo, descripcion, disponibilidad, fuente } = req.body
+        const data = {
+            nombre, 
+            tipo, 
+            descripcion, 
+            disponibilidad, 
+            fuente
+        }
+        const alimentacion = await alimentaciones.insertOne(data);
+        res.status(302).send(alimentacion)
     } catch (error) {
         console.error(error)
     }
@@ -47,10 +54,19 @@ export const deleteAlimentacion = async (req, res)=>{
 
 export const putAlimentacion = async(req, res)=>{
     try {
-        const alimentacion = await alimentaciones.findOneAndUpdate(
-            {_id:req.params.id},
-            req.body,
-            {new: true}
+        const objectIdParams = req.params.id;
+        const objectID = new ObjectId(objectIdParams);
+        const { nombre, tipo, descripcion, disponibilidad, fuente } = req.body
+        const data = {
+            nombre, 
+            tipo, 
+            descripcion, 
+            disponibilidad, 
+            fuente
+        }
+        const alimentacion = await alimentaciones.updateOne(
+            {_id:objectID},
+            { $set: data}
         );
         res.status(302).send(alimentacion)
     } catch (error) {
