@@ -34,8 +34,8 @@
   }
 
   .a {
-    display: flex !important;
-
+    display: flex;
+    flex-direction: column; 
   }
 
 .a i {
@@ -47,3 +47,29 @@
     justify-content: center;
     align-items: center;
 }
+
+label {
+    margin-top: 5px;
+  }
+  
+  
+  input {
+    margin-top: 5px;
+    border-radius: 30px;
+    padding: 8px;
+    padding-left: 16px;
+  }
+  
+  
+  select {
+    margin-top: 5px;
+    border-radius: 30px;
+    padding: 8px;
+    padding-left: 16px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    border-bottom: 1px solid white; 
+    padding-bottom: 5px; 
+  }

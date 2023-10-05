@@ -6,7 +6,7 @@ const visitantes = db.collection('visitantes');
 export const getVisitantes = async(req,res)=>{
     try {
        const visitante = await visitantes.find().toArray();
-        res.status(302).send(visitante) 
+        res.json(visitante) 
     } catch (error) {
         console.error(error)
     }
@@ -17,7 +17,7 @@ export const getVisitante = async(req, res)=>{
         const objectIdParams = req.params.id;
         const objectID = new ObjectId(objectIdParams);
         const visitante = await visitantes.findOne({_id: objectID})
-        res.status(302).send(visitante)
+        res.json(visitante)
     } catch (error) {
         console.error(error)
     }
@@ -35,7 +35,7 @@ export const postVisitante = async(req, res)=>{
             telefono
         }
         const visitante = await visitantes.insertOne(data);
-        res.status(302).send(visitante)
+        res.json(visitante)
     } catch (error) {
         console.error(error)
     }
@@ -46,7 +46,7 @@ export const deleteVisitante = async(req, res)=>{
         const objectIdParams = req.params.id;
         const objectID = new ObjectId(objectIdParams);
         const visitante = await visitantes.deleteOne({_id:objectID});
-        res.status(302).send(visitante)
+        res.json(visitante)
     } catch (error) {
         console.error(error)
     }
@@ -69,7 +69,7 @@ export const putVisitante = async(req, res)=> {
             {_id: objectID},
             { $set: data}
         )
-        res.status(302).send(visitante)
+        res.json(visitante)
     } catch (error) {
         console.error(error)        
     }

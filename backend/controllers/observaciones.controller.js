@@ -5,8 +5,27 @@ const observacionest = db.collection('observaciones');
 
 export const getObservaciones = async (req, res)=> {
     try {
-        const observacion = await observacionest.find().toArray();
-        res.status(302).send(observacion)
+        const observacion = await observacionest.aggregate([{
+            $lookup: {
+                from: "visitantes",
+                localField: "observador",
+                foreignField: "_id",
+                as: "observador"
+            },
+        },
+        {
+            $unwind: "$observador"
+        },
+        {
+            $project: {
+                _id: 1,
+                fecha: 1,
+                "observador.nombre": 1,
+                notas: 1
+            }
+        }
+        ]).toArray();
+        res.json(observacion)
     } catch (error) {
         console.error(error)
     }
@@ -17,7 +36,7 @@ export const getObservacion = async (req, res)=>{
         const objectIdParams = req.params.id;
         const objectID = new ObjectId(objectIdParams);
         const observacion = await observacionest.findOne({_id: objectID});
-        res.status(302).send(observacion)
+        res.json(observacion)
     } catch (error) {
         console.error(error)
     }
@@ -34,7 +53,7 @@ export const postObservacion = async (req, res)=>{
             observaciones
         }
         const observacion = await observacionest.insertOne(data);
-        res.status(302).send(observacion)
+        res.json(observacion)
     } catch (error) {
         console.error(error)
     }
@@ -46,7 +65,7 @@ export const deleteObservacion = async (req, res)=>{
         const objectIdParams = req.params.id;
         const objectID = new ObjectId(objectIdParams);
         const observacion = await observacionest.deleteOne({_id:objectID});
-        res.status(302).send(observacion)
+        res.json(observacion)
     } catch (error) {
         console.error(error)
     }
@@ -68,7 +87,7 @@ export const putObservacion = async(req, res)=>{
             {_id: objectID},
             { $set: data}
         );
-        res.status(302).send(observacion)
+        res.json(observacion)
     } catch (error) {
         console.error(error)
     }

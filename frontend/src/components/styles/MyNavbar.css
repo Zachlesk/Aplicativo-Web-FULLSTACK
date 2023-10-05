@@ -23,6 +23,7 @@ h5 {
     right: 0;
 }
 
-/* .mariposa {
-    margin-left: 20px;
-} */
+.mariposa {
+    position: absolute;
+    margin-left: 50px;
+}
