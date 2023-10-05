@@ -6,7 +6,7 @@ const mariposas = db.collection('mariposas');
 export const getMariposas = async (req, res)=> {
     try {
         const mariposa = await mariposas.find().toArray();
-        res.status(302).send(mariposa)
+        res.json(mariposa)
     } catch (error) {
         console.error(error)
     }
@@ -17,7 +17,7 @@ export const getMariposa = async (req, res)=>{
         const objectIdParams = req.params.id;
         const objectID = new ObjectId(objectIdParams);
         const mariposa = await mariposas.findOne({_id: objectID});
-        res.status(302).send(mariposa)
+        res.json(mariposa)
     } catch (error) {
         console.error(error)
     }
@@ -38,7 +38,7 @@ export const postMariposa = async (req, res)=>{
             alimentacion: alimentacionObjectId
         }
         const mariposa = await mariposas.insertOne(data);
-        res.status(302).send(mariposa);
+        res.json(mariposa)
     } catch (error) {
         console.error(error)
     }
@@ -50,7 +50,7 @@ export const deleteMariposa = async (req, res)=>{
         const objectIdParams = req.params.id;
         const objectID = new ObjectId(objectIdParams);
         const mariposa = await mariposas.deleteOne({_id: objectID});
-        res.status(302).send(mariposa)
+        res.json(mariposa)
     } catch (error) {
         console.error(error)
     }
@@ -76,7 +76,7 @@ export const putMariposa = async(req, res)=>{
             {_id:objectID},
             { $set: data}
         );
-        res.status(302).send(mariposa)
+        res.json(mariposa)
     } catch (error) {
         console.error(error)
     }

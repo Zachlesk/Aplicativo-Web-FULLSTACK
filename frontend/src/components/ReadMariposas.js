@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Card, Table, Button } from "semantic-ui-react";
-import { Link } from 'react-router-dom';
+/* import { Card, Table, Button } from "semantic-ui-react"; */
+import { Button, Card, Col, Row } from "react-bootstrap";
+import './styles/ReadMariposas.css'
+/* import { Link } from 'react-router-dom'; */
 
 
 export default function ReadMariposas() {
@@ -44,31 +46,28 @@ export default function ReadMariposas() {
     }
 
     return ( 
-        <div>
-        <Card.Group>
-  {APIdata.map((data) => {
-    return (
-      <div key={data.nombre_cientifico}>
-        <Card>
-          {data.nombre_comun}
-          {data.nombre_cientifico}
-          {data.descripcion}
-          {data.habitat}
-          {data.distribucion}
-        </Card>
-        <Link to='/update'>
-          <Table.Cell>
-            <Button onClick={() => setData(data)}>Actualizar</Button>
-          </Table.Cell>
-        </Link>
-        <Table.Cell>
-          <Button onClick={() => onDelete(data.id)}>Eliminar</Button>
-        </Table.Cell>
-      </div>
+      <div>
+      <Row xs={1} md={3} className="g-4">
+        {APIdata.map((data) => (
+          <Col key={data.nombre_cientifico} xs={12} md={4} className="mb-5 col">
+            <Card className="bg-dark text-white custom-card">
+              <Card.Body>
+                <Card.Text> <b> Nombre común: </b> {data.nombre_comun}</Card.Text>
+                <Card.Text> <b> Nombre cientifico: </b> {data.nombre_cientifico}</Card.Text>
+                <Card.Text> <b> Descripción : </b> {data.descripcion}</Card.Text>
+                <Card.Text> <b> Hábitat :</b> {data.habitat}</Card.Text>
+                <Card.Text> <b> Distribución : </b>{data.distribucion}</Card.Text>
+                <div className="row">
+                  <Button className="btn btn-warning btn-round" onClick={() => setData(data)}> <i className="fa fa-pencil" aria-hidden="true"> </i></Button>
+                  <Button className="btn btn-danger btn-round" onClick={() => onDelete(data.id)}> <i className="fa fa-trash" aria-hidden="true"></i></Button>
+                </div>
+                
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
     );
-  })}
-</Card.Group>
-
-        </div>
-     );
+     ;
 }

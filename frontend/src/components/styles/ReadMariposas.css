@@ -1,0 +1,20 @@
+.custom-card {
+    max-width: 300px; 
+    margin: 0 auto; 
+  }
+
+  .aaaa {
+    /* display: flex; */
+    gap: 1;
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mb-5 {
+    padding: 10px;
+    margin-top: 5rem;
+    width: 400px;
+  }
