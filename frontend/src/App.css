@@ -1,38 +1,24 @@
-.App {
-  text-align: center;
+body {
+ /*  background-color: black; */
+  font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom, #ffffff 50%, #f0f0f0 51%, #ffffff 100%);
+    background-size: 100% 50px; /* Ajusta la altura de las ondas */
+    animation: wave 5s linear infinite alternate; /* Crea una animación de ondas */
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./fonts/Montserrat-Regular.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tus archivos */
+  font-weight: normal;
+  font-style: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes wave {
+  0% {
+    background-position-y: 0; /* Comienza desde arriba */
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  100% {
+    background-position-y: 50px; /* Termina en la parte inferior */
   }
 }

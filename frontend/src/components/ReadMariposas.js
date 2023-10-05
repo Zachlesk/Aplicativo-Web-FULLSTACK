@@ -9,7 +9,7 @@ export default function ReadMariposas() {
     const [APIdata, setAPIdata] = useState([]);
     
     useEffect(()=>{
-        axios.get('http:/localhost:8020/mariposas/all')
+        axios.get('http://localhost:8020/mariposas/all')
         .then((response)=>{
             console.log(response.data);
             setAPIdata(response.data);
@@ -29,7 +29,7 @@ export default function ReadMariposas() {
     }
 
       const getData = ()=>{
-        axios.get('http:/localhost:8020/mariposas/all')
+        axios.get('http://localhost:8020/mariposas/all')
         .then((getData) => {
             setAPIdata(getData.data)
             console.log(APIdata);
@@ -37,7 +37,7 @@ export default function ReadMariposas() {
     }
 
     const onDelete = (id)=>{
-        axios.delete(`http:/localhost:8020/mariposas/delete/${id}`)
+        axios.delete(`http://localhost:8020/mariposas/delete/${id}`)
         .then(() => {
             getData()
         })  

@@ -1,0 +1,49 @@
+.custom-modal .modal-content {
+    background-color: #0E0D0D !important;
+    border: none; 
+    border-radius: 20px ; 
+    box-shadow: none; 
+  }
+  
+  .custom-modal .modal-header {
+    background-color: transparent; 
+    border-bottom: none; 
+  }
+  
+  .custom-modal .modal-title {
+    color: white; 
+  }
+  
+  .custom-modal .modal-body {
+    background-color: transparent; 
+    color: white; 
+  }
+  
+  .custom-modal .modal-footer {
+    background-color: transparent; 
+    border-top: none; 
+  }
+  
+  .custom-modal .modal-footer .btn-secondary,
+  .custom-modal .modal-footer .btn-primary {
+    color: white; 
+  }
+  
+  Button {
+    margin: 16px !important
+  }
+
+  .a {
+    display: flex;
+    /* flex-direction: column; */
+  }
+
+.a i {
+    margin-top: 10px;
+}
+
+.b {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
