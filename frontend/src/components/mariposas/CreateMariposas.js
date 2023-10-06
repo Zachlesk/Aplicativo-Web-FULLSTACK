@@ -9,7 +9,7 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/CreateMariposa.css'
 
-export default function UpdateMariposas( { show, handleClose } ){
+export default function UpdateMariposas( { show, handleClosePost } ){
 
     let history = useHistory();
     const [nombre_comun, setNombreComun] = useState('');
@@ -56,7 +56,7 @@ export default function UpdateMariposas( { show, handleClose } ){
     return(
         <div>
             <div>
-            <Modal show={show} onHide={handleClose} className="custom-modal">
+            <Modal show={show} onHide={handleClosePost} className="custom-modal">
 
                 <Modal.Header className='b'>
                     <Modal.Title> ¡Agrega una nueva mariposa! </Modal.Title>
@@ -107,7 +107,7 @@ export default function UpdateMariposas( { show, handleClose } ){
                     <Button  type="submit" onClick={postData}>
                         Agrega 
                     </Button>
-                    <Button type="submit" variant="secondary" onClick={handleClose}>
+                    <Button type="submit" variant="secondary" onClick={handleClosePost}>
                         Cerrar
                     </Button>
                 </Modal.Footer>
