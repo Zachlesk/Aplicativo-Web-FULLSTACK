@@ -9,7 +9,7 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/CreateMariposa.css'
 
-export default function UpdateMariposas( { show, handleClosePost } ){
+export default function CreateMariposas( { show, handleClosePost } ){
 
     let history = useHistory();
     const [nombre_comun, setNombreComun] = useState('');

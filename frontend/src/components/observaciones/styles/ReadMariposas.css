@@ -1,6 +1,6 @@
 
 .custom-card {
-    max-width: 300px; 
+    max-width: 700px !important; 
     margin: 0 auto; 
     border-radius: 30px;
     display: flex;

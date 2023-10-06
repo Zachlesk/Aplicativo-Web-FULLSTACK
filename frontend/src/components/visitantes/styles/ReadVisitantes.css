@@ -1,0 +1,20 @@
+body {
+    background-image: url(../../../assets/fondo.png);
+    background-repeat: repeat;
+    background-position: top;
+  }
+  
+.custom-card {
+    max-width: 800px; 
+    margin: 0 auto; 
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+
+  .container-bb {
+    display: flex;
+  }

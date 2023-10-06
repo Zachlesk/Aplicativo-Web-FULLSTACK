@@ -4,6 +4,8 @@ import MyModal from './components/MyModal.js';
 import ReadMariposas from './components/mariposas/ReadMariposas.js';
 import ReadJaulas from './components/jaulas/ReadJaulas.js';
 import ReadAlimentacion from './components/alimentacion/ReadAlimentacion.js';
+import ReadVisitantes from './components/visitantes/ReadVisitantes.js'
+import ReadObservaciones from './components/observaciones/ReadObservaciones.js';
 import HomePage from './components/HomePage.js'
 import Footer from './components/MyFooter.js';
 import MyNavbar from './components/MyNavbar.js';
@@ -21,6 +23,8 @@ function App() {
         <Route path="/mariposas" component={ReadMariposas} />
         <Route path="/jaulas" component={ReadJaulas} />
         <Route path="/alimentacion" component={ReadAlimentacion} />
+        <Route path="/visitantes" component={ReadVisitantes} />
+        <Route path="/observaciones" component={ReadObservaciones} />
       </Switch>
       <Footer></Footer>
     </Router>
