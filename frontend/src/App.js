@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MyModal from './components/MyModal.js';
 import ReadMariposas from './components/mariposas/ReadMariposas.js';
 import ReadJaulas from './components/jaulas/ReadJaulas.js';
+import ReadAlimentacion from './components/alimentacion/ReadAlimentacion.js';
 import HomePage from './components/HomePage.js'
 import Footer from './components/MyFooter.js';
 import MyNavbar from './components/MyNavbar.js';
@@ -19,6 +20,7 @@ function App() {
         <Route path="/modal" component={MyModal} />
         <Route path="/mariposas" component={ReadMariposas} />
         <Route path="/jaulas" component={ReadJaulas} />
+        <Route path="/alimentacion" component={ReadAlimentacion} />
       </Switch>
       <Footer></Footer>
     </Router>

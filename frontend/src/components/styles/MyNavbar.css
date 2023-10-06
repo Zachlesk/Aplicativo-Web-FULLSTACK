@@ -27,3 +27,7 @@ h5 {
     position: absolute;
     margin-left: 50px;
 }
+
+.mr-auto {
+    margin-bottom: 20px;
+}
