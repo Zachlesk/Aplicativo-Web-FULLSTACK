@@ -13,7 +13,11 @@ Su desarrollo se enfoca en el stack MERN, mostrando un planteamiento de negocio 
 - [Wireframe diseñado con Figma](#wireframe-diseñado-con-figma)
 
 - [Diagrama de base de datos no relacional](#diagrama-de-base-de-datos-no-relacional)
+
+- [Documentacion backend](#documentacion-backend)
+
 - [¿Cómo utilizar el software?](#cómo-utilizar-el-software)
+
 - [Más información](#más-info)
   - [Tecnologías utilizadas](#tecnologías-utilizadas)
   - [Depencias](#dependencias)
@@ -42,6 +46,14 @@ Se construyó un modelo de diagrama de base de datos no relacional como la estru
     <img src='./assets/diagrama.png'>
 <div>
 
+
+## Documentación backend
+
+Se construyó una documentación con Swagger para los endpoints crud api del almacenamiento de datos del mariposario, presentado a continuación:
+- [Documentacion Swagger](http://localhost:8020/api-doc/#/)
+-> Funcionará siempre y cuando ya hayas comenzado los servidores back-end y front-end
+
+
 ## ¿Cómo utilizar el software? 💻
 
 Para poder usar este sistema en tu computador, tendrás que instalarlo y utilizarlo localmente, y necesitarás tener instalados los siguientes requisitos:
@@ -55,6 +67,8 @@ Para poder instalarlo, sigue los siguientes pasos:
 
 1. Clona el repositorio: `https://github.com/Zachlesk/Aplicativo-Web-FULLSTACK.git`
 `
+
+## Primer procedimiento 
 
 2. Entrar a la carpeta 'frontend' e inicializa el host con React
 
@@ -79,7 +93,36 @@ Para poder instalarlo, sigue los siguientes pasos:
     Server is running on port ${PORT}
     ```
 <br>
--> ¡Listo! Tu servidor está en funcionamiento.
+-> ¡Listo! Tu servidor para front-end está en funcionamiento.
+
+<hr>
+
+## Segundo procedimiento
+
+1. Entrar a la carpeta 'backend' e inicializa el servidor Node.js para el api
+
+    ```bash
+    cd backend
+    ```
+
+2. Desde la terminal e instala las dependencias con el siguiente comando:
+
+    ```bash
+    npm install
+    ```
+
+3. Una vez instaladas las dependencias vamos a abrir una nueva terminal y ejecutamos el software:
+
+    ```bash
+    npm run dev
+    ```
+
+4. En la consola, visualizarás el siguiente mensaje: 
+    ```bash
+    Server is running on port ${PORT}
+    ```
+<br>
+-> ¡Listo! Tu servidor para back-end está en funcionamiento.
 
 <hr>
 
